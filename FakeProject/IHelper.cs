@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LenJection2
+namespace FakeProject
 {
-    public class Class1
+    public interface IHelper
     {
+        void help(string with);
     }
 }
