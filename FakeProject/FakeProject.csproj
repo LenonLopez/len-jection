@@ -43,8 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HelperImplementerClass.cs" />
-    <Compile Include="IHelper.cs" />
-    <Compile Include="IMessager.cs" />
+    <Compile Include="interfaces\IHelper.cs" />
+    <Compile Include="interfaces\IMessager.cs" />
     <Compile Include="MessageService.cs" />
     <Compile Include="Presenter.cs" />
     <Compile Include="Program.cs" />
@@ -59,9 +59,11 @@
       <Project>{273a6a42-927b-45b5-9c6f-fb3cd8358aba}</Project>
       <Name>LenJection2</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LenLog\LenLog.csproj">
+      <Project>{c67d076b-9f5f-4631-b4cf-98bbd6c98871}</Project>
+      <Name>LenLog</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

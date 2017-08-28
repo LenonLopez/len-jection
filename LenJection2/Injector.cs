@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LenLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,25 +7,26 @@ namespace IOC
 {
     public class Injector
     {
+        private static Logger log = Logger.Instance;
 
         private Dictionary<Type, Func<object>> providers = new Dictionary<Type, Func<object>>();
 
         public void Bind<TKey, TConcrete>() where TConcrete : TKey
         {
-            Console.WriteLine($"Binding Type {typeof(TKey)} to {typeof(TConcrete)}");
+            log.Write($"Binding Type {typeof(TKey)} to {typeof(TConcrete)}");
 
             providers[typeof(TKey)] = () => ResolveByType(typeof(TConcrete));
         }
 
         public void Bind<T>(T instance)
         {
-            Console.WriteLine($"Binding instance {typeof(T)} to {typeof(T)}");
+            log.Write($"Binding instance {typeof(T)} to {typeof(T)}");
             providers[typeof(T)] = () => instance;
         }
 
         private object ResolveByType(Type type)
         {
-            Console.WriteLine("Resolveing: {0}", type);
+            log.Write($"Resolving By Type {type}");
 
             var constructor = type.GetConstructors().SingleOrDefault();
 
@@ -46,11 +48,13 @@ namespace IOC
 
         public TKey Resolve<TKey>()
         {
+            log.Write($"Resolve TKey: {typeof(TKey)}");
             return (TKey)Resolve(typeof(TKey));
         }
 
         private object Resolve(Type type)
         {
+            log.Write($"Resolve  type: {type}");
             Func<object> provider;
             if (providers.TryGetValue(type, out provider))
             {
